@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div class="container">
+    <h1>Orden de Proforma</h1>
+
+    <form method="post" id="formulario_nueva_proforma">
+        {% csrf_token %}
+        {{ formProforma.as_p }}
+        <div class="form-group">
+            <label for="fecha">Fecha O/P:</label>
+            <input type="date" class="form-control" id="fecha" name="fecha">
+        </div>
+        <div class="form-group">
+            <label for="bu">BU:</label>
+            <select class="form-control" id="bu" name="bu">
+                {% for bu in lista_bu %}
+                <option value="{{ bu.id }}">{{ bu.bu }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="condicion_pago">Condicion Pago:</label>
+            <select class="form-control" id="condicion_pago" name="condicion_pago">
+                {% for pago in lista_pago %}
+                <option value="{{ pago.id }}">{{ pago.condicion }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="moneda">Moneda:</label>
+            <select class="form-control" id="moneda" name="moneda">
+                {% for moneda in lista_moneda %}
+                <option value="{{ moneda.id }}">{{ moneda.tipo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="validez">Validez:</label>
+            <input type="text" class="form-control" id="validez" name="validez">
+        </div>
+        <div class="form-group">
+            <label for="vendedor">Vendedor:</label>
+            <select class="form-control" id="vendedor" name="vendedor">
+                {% for vendedor in lista_vendedor %}
+                <option value="{{ vendedor.id }}">{{ vendedor.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input type="text" class="form-control" id="correo" name="correo">
+        </div>
+        <div class="form-group">
+            <label for="celular">Celular:</label>
+            <input type="text" class="form-control" id="celular" name="celular">
+        </div>
+        <form method="post" id="formulario_nueva_proforma">
+            {% csrf_token %}
+            {{ formProforma.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{% url 'proforma' %}" class="btn btn-secondary">Volver</a>
+        </form>
+    </form>
+</div>
+
+{% endblock %}
